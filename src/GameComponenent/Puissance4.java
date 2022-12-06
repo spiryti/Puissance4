@@ -3,25 +3,15 @@ package GameComponenent;
 import java.util.ArrayList;
 
 public class Puissance4 implements Game{
-    @Override
-    public State getInitialState() {
-        //@todo renvoie l'etat initiale( plateau vide)
-    	Puissance4State puissance4Init = new Puissance4State();
-    	Jeton plateau[][] = null;
-    	for (int i=0 ; i<6;i++) {
-    		for (int j=0;i<7;i++) {
-    			plateau[i][j] = Jeton.Vide;
-    		}
-    	}
-    	puissance4Init.setPlateau(plateau);
-    	//State state = puissance4Init.getPlateau();
-    	
-        return puissance4Init;
-    }
+    
 
     @Override
     public ArrayList<Action> getActions(State state) {
         //@todo renvoie la liste actions possible après un coup
+    	ArrayList<Puissance4Action> puissance4Action = new ArrayList<>();
+    	
+    	
+    	
         return null;
     }
 

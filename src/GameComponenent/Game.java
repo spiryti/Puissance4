@@ -3,11 +3,7 @@ package GameComponenent;
 import java.util.ArrayList;
 
 public interface Game {
-    /**
-     *
-     * @return L'atat initial du jeu (aucun joueur n'a joué)
-     */
-    public State getInitialState();
+   
 
     /**
      *
