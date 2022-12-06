@@ -10,7 +10,7 @@ public interface Game {
      * @param state l'état actuel
      * @return List d'actions possible en partant d'un état donné
      */
-    public ArrayList<Action> getActions(State state);
+    public ArrayList<Action> getActions(Puissance4State state);
 
     /**
      *
