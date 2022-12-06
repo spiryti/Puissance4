@@ -6,7 +6,17 @@ public class Puissance4 implements Game{
     @Override
     public State getInitialState() {
         //@todo renvoie l'etat initiale( plateau vide)
-        return null;
+    	Puissance4State puissance4Init = new Puissance4State();
+    	Jeton plateau[][] = null;
+    	for (int i=0 ; i<6;i++) {
+    		for (int j=0;i<7;i++) {
+    			plateau[i][j] = Jeton.Vide;
+    		}
+    	}
+    	puissance4Init.setPlateau(plateau);
+    	//State state = puissance4Init.getPlateau();
+    	
+        return puissance4Init;
     }
 
     @Override

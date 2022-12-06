@@ -1,16 +1,16 @@
 package GameComponenent;
 
-public class Puissance4Action {
+public class Puissance4Action implements Action{
     /**
      * vaut true si c'est le joeur jaune 0 sinon
      */
-    public boolean player;
+   // public boolean player; 
     /**
      * la colonne où le jeton est joué
      */
     public int colonne;
 
-    Puissance4Action(boolean player,int colonne){
+    Puissance4Action(/*boolean player,*/int colonne){
         //@todo Action
     }
 }
