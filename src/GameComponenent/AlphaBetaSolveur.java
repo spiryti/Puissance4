@@ -1,8 +1,14 @@
 package GameComponenent;
 
-import java.util.ArrayList;
+public abstract class AlphaBetaSolveur implements Solveur{
 
-public class AlphaBetaSolveur implements Solveur{
+    public Game game;
 
-
+    AlphaBetaSolveur(Game game) {
+        this.game = game;
+    }
+    @Override
+    public Action makeDecision(State state) {
+        return null;
+    }
 }
