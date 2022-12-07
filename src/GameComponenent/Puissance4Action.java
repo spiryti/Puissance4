@@ -1,6 +1,6 @@
 package GameComponenent;
 
-public class Puissance4Action implements Action{
+public class Puissance4Action {
     /**
      * vaut true si c'est le joeur jaune 0 sinon
      */

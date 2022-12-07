@@ -1,6 +1,6 @@
 package GameComponenent;
 
-public abstract class AlphaBetaSolveur implements Solveur{
+public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Action>{
 
     public Game game;
 

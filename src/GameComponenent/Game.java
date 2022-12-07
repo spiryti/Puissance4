@@ -2,7 +2,7 @@ package GameComponenent;
 
 import java.util.ArrayList;
 
-public interface Game {
+public interface Game <State,Action> {
    
 
     /**
@@ -10,7 +10,7 @@ public interface Game {
      * @param state l'état actuel
      * @return List d'actions possible en partant d'un état donné
      */
-    public ArrayList<Action> getActions(Puissance4State state);
+    public ArrayList<Action> getActions(State state);
 
     /**
      *
@@ -24,7 +24,7 @@ public interface Game {
      * @param action action effectué
      * @return nouvel état après que l'action ait été effectué
      */
-    public State getResult(Puissance4State state,Puissance4Action action);
+    public State getResult(State state,Action action);
 
     /**
      *

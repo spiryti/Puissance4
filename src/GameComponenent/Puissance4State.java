@@ -1,11 +1,9 @@
 package GameComponenent;
 
-import java.util.Arrays;
-
 /**
  * Un plateau de jeu elle permet d'accéder à l'ensemble des éléments d'un plateau
  */
-public class Puissance4State implements State{
+public class Puissance4State {
 
     private Jeton plateau[][];
     

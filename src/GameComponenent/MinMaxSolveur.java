@@ -5,7 +5,7 @@ import com.sun.source.tree.BreakTree;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class MinMaxSolveur implements Solveur {
+public abstract class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
 
     public Game game;
     private final int depth;
