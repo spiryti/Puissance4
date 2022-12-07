@@ -24,7 +24,7 @@ public interface Game {
      * @param action action effectué
      * @return nouvel état après que l'action ait été effectué
      */
-    public State getResult(State state,Action action);
+    public State getResult(Puissance4State state,Puissance4Action action);
 
     /**
      *

@@ -31,9 +31,30 @@ public class Puissance4 implements Game{
     }
 
     @Override
-    public State getResult(State state, Action action) {
+    public State getResult(Puissance4State state, Puissance4Action action) {
         //@todo renvoie l'état (le plateau) après que une action ait été effectué
-        return null;
+    	
+    	Jeton[][] plateau = state.getPlateau();
+    	ArrayList<Jeton> places = new ArrayList<Jeton>();
+    	int colonne = action.getColonne() -1;
+    	
+    	for (int i = 0; i<6;i++) {
+    		Jeton jeton = plateau[i][colonne];
+    			places.add(jeton);
+    	}
+    	
+    	for(int i=0; i<places.size();i++) {
+    		Jeton jeton = places.get(i);
+    		if ( jeton.equals(Jeton.Vide) == false && i == places.size()-1) {
+    			System.out.println("plus de place sur cette colonne");	
+    		}else if (jeton.equals(Jeton.Vide)){
+    			jeton = Jeton.Jaune; // @todo a modifs une fois tout impl�menter
+    			plateau[i][colonne] = jeton;
+    			state.setPlateau(plateau);
+    			break;
+    		}
+    	}
+        return state;
     }
 
 

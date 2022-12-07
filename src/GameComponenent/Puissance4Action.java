@@ -10,7 +10,20 @@ public class Puissance4Action implements Action{
      */
     public int colonne;
 
-    Puissance4Action(/*boolean player,*/int colonne){
-        //@todo Action
+   public Puissance4Action(/*boolean player,*/int colonne){
+        //@todo Actiont
+    	this.colonne = colonne;
+    }
+
+	public int getColonne() {
+		return colonne;
+	}
+
+	public void setColonne(int colonne) {
+		this.colonne = colonne;
+	}
+    
+    public void readColonne() {
+    	
     }
 }
