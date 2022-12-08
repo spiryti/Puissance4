@@ -44,7 +44,7 @@ public abstract class MinMaxSolveur<Puissance4State,Puissance4Action> implements
 
             for (Puissance4Action action : game.getActions(state)) {
                 Puissance4State state2 = new Puissance4State(state);
-                int score = (int) miniMax(state, depth - 1, false,bestAction).get(1);
+                int score = (int) miniMax(state2, depth - 1, false,bestAction).get(1);
                 if (score > (int) max.get(1)) {
                     max.set(0, state);
                     max.set(1, score);
