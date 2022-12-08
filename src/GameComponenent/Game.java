@@ -3,8 +3,12 @@ package GameComponenent;
 import java.util.ArrayList;
 
 public interface Game <State,Action> {
-   
 
+    /**
+     *
+     * @return l'état initial du jeu
+     */
+    public State getInitialState();
     /**
      * @param state l'état actuel
      * @return List d'actions possible en partant d'un état donné

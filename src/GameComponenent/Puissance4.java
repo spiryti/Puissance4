@@ -3,9 +3,14 @@ package GameComponenent;
 import java.util.ArrayList;
 
 public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
-    
 
-    @Override
+
+	@Override
+	public Puissance4State getInitialState() {
+		return new Puissance4State();
+	}
+
+	@Override
     public ArrayList<Puissance4Action> getActions(Puissance4State state) {
         //@todo renvoie la liste actions possible après un coup
     	ArrayList<Puissance4Action> puissance4Action = new ArrayList<Puissance4Action>();
