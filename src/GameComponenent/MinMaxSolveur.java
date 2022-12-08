@@ -1,9 +1,6 @@
 package GameComponenent;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public abstract class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
 
     public Game<State,Action> game;
@@ -18,7 +15,6 @@ public abstract class MinMaxSolveur<State,Action> implements Solveur<State,Actio
     public Action makeDecision(State state) {
         Action bestaction = null;
         double max = Double.NEGATIVE_INFINITY;
-        HashMap<Integer, Action> bestAction = new HashMap<>();
         for (Action action : game.getActions(state)) {
             State state2 = state;
             state2=game.getResult(state2,action);
@@ -122,9 +118,6 @@ public class MinimaxSearch<STATE, ACTION> implements
                     maxValue(game.getResult(state, action),!player));
         return value;
     }
-
-
-
 
     public int getMetrics() {
         return expandedNodes;
