@@ -6,8 +6,10 @@ package GameComponenent;
 public class Puissance4State {
 
     private Jeton plateau[][];
+    private boolean joueur;
     
     public Puissance4State(){
+    	joueur = true; // Jeton jaune = true et jeton Rouge = false
         plateau=new Jeton[6][7];
         for (int i=0 ; i<plateau.length;i++) {
     		for (int j=0;j<plateau[i].length;j++) {
@@ -20,6 +22,17 @@ public class Puissance4State {
 
     }
     
+    
+    
+    
+	public boolean isJoueur() {
+		return joueur;
+	}
+
+	public void setJoueur(boolean joueur) {
+		this.joueur = joueur;
+	}
+
 	public Jeton[][] getPlateau() {
 		return plateau;
 	}

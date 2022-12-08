@@ -11,7 +11,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Puissance4State p4state =  new Puissance4State();
         
-        
+        boolean joueur =  p4state.isJoueur();
         p4state.stateToString();
         p4.getActions(p4state);  
         System.out.println();
@@ -19,8 +19,15 @@ public class Main {
         int colonne = scanner.nextInt();
         do {
         	Puissance4Action p4action = new Puissance4Action(colonne);
-	        p4.getResult(p4state, p4action);
+	        p4.getResult(p4state, p4action, joueur);
 	        p4state.stateToString();
+	        if (joueur == true) { // si jeton jaune joué
+	        	joueur = false; // next tour = bouton rouge 
+	        	p4state.setJoueur(joueur);
+	        }else if (joueur == false) { // si jeton rouge joué 
+	        	joueur = true;// next turn bouton jaune 
+	        	p4state.setJoueur(joueur);
+	        }
 	        System.out.println();
 	        System.out.println("Entrez une collone pour poser une pièce");
 	        colonne = scanner.nextInt();
