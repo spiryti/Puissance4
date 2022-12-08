@@ -19,7 +19,7 @@ public abstract class MinMaxSolveur<Puissance4State,Puissance4Action> implements
         Puissance4Action bestaction = null;
         int max = -999999;
         HashMap<Integer, Puissance4Action> bestAction = new HashMap<>();
-        for (Puissance4Action action : state.getMoves()) {
+        for (Puissance4Action action : game.getActions(state)) {
             Puissance4State state2 = new Puissance4State(state);
             int score = (int) miniMax(state2,depth - 1, false, bestAction).get(1);
             if (score > max) {
@@ -42,7 +42,7 @@ public abstract class MinMaxSolveur<Puissance4State,Puissance4Action> implements
             max.add(null);
             max.add(-999999);
 
-            for (Puissance4Action action : state.getMoves()) {
+            for (Puissance4Action action : game.getActions(state)) {
                 Puissance4State state2 = new Puissance4State(state);
                 int score = (int) miniMax(state, depth - 1, false,bestAction).get(1);
                 if (score > (int) max.get(1)) {
@@ -55,7 +55,7 @@ public abstract class MinMaxSolveur<Puissance4State,Puissance4Action> implements
             ArrayList min = new ArrayList<>();
             min.add(null);
             min.add(999999);
-            for (Puissance4Action action : state.getMoves) {
+            for (Puissance4Action action : game.getActions(state)) {
                 Puissance4State state2 = new Puissance4State(state);
                 int score = (int) miniMax(state2, depth - 1, true,bestAction).get(1);
                 if (score < (int) min.get(1))
