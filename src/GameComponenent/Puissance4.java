@@ -6,7 +6,7 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
     
 
     @Override
-    public ArrayList<Puissance4Action> getActions(Puissance4State state) {
+    public Puissance4Action getActions(Puissance4State state) {
         //@todo renvoie la liste actions possible après un coup
     	ArrayList<Puissance4Action> puissance4Action = new ArrayList<>();
     	

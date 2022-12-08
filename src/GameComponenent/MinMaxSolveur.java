@@ -34,7 +34,7 @@ public abstract class MinMaxSolveur<Puissance4State,Puissance4Action> implements
         if (depth == 0) {
             ArrayList array = new ArrayList<>();
             array.add(null);
-            array.add(state.getResult());
+            array.add(game.getResult(state,bestAction));
             return array;
         }
         if (maximize) {
