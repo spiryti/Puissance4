@@ -6,10 +6,10 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
     
 
     @Override
-    public Puissance4Action getActions(Puissance4State state) {
+    public ArrayList<Puissance4Action> getActions(Puissance4State state) {
         //@todo renvoie la liste actions possible après un coup
-    	ArrayList<Puissance4Action> puissance4Action = new ArrayList<>();
-    	
+    	ArrayList<Puissance4Action> puissance4Action = new ArrayList<Puissance4Action>();
+
     	Jeton[][] plateau=state.getPlateau();
         for (int i=0 ; i<plateau.length;i++) {
     		for (int j=0;j<plateau[i].length;j++) {
@@ -17,7 +17,7 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
     				if (plateau[i][j].equals(Jeton.Vide)) {
     					Puissance4Action actionPosible = new Puissance4Action(j);
     					puissance4Action.add(actionPosible);
-    					
+
     				}
     			}
     		}

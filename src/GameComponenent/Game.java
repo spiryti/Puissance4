@@ -1,5 +1,7 @@
 package GameComponenent;
 
+import java.util.ArrayList;
+
 public interface Game <State,Action> {
    
 
@@ -7,7 +9,7 @@ public interface Game <State,Action> {
      * @param state l'état actuel
      * @return List d'actions possible en partant d'un état donné
      */
-    public Puissance4Action getActions(State state);
+    public ArrayList<Action> getActions(State state);
 
     /**
      *
