@@ -3,13 +3,32 @@ package GameComponenent;
 public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Action>{
 
     public Game game;
+    private int depth;
 
     AlphaBetaSolveur(Game game) {
         this.game = game;
+        this.depth = 3;
     }
     @Override
     public Action makeDecision(State state) {
-        return null;
+        Action bestaction = null;
+        double alpha = Double.NEGATIVE_INFINITY;
+        double beta = Double.POSITIVE_INFINITY;
+        double score;
+        for (Action action : game.getActions(state)) {
+            State state2 = state;
+            state2 = game.getResult(state2, action);
+            score = alphaBeta(state2, depth - 1, false, alpha, beta);
+            alpha = Math.max(alpha, score);
+            if (score > alpha) {
+                bestaction = action;
+                alpha = score;
+                if (beta <= alpha) {
+                    return action;
+                }
+            }
+        }
+        return bestaction;
     }
 
     public double alphaBeta(State state, int depth, boolean maximize,double alpha, double beta){
@@ -44,8 +63,5 @@ public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Ac
             }
             return beta;
         }
-        return 0;
     }
-
-
 }
