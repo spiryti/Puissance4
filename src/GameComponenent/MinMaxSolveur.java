@@ -17,55 +17,49 @@ public abstract class MinMaxSolveur<State,Action> implements Solveur<State,Actio
     @Override
     public Action makeDecision(State state) {
         Action bestaction = null;
-        int max = -999999;
+        double max = Double.NEGATIVE_INFINITY;
         HashMap<Integer, Action> bestAction = new HashMap<>();
         for (Action action : game.getActions(state)) {
             State state2 = state;
-            int score = (int) miniMax(state2,depth - 1, false, bestAction).get(1);
+            state2=game.getResult(state2,action);
+            double score = miniMax(state2,depth - 1, false);
             if (score > max) {
-                bestaction =action;
+                bestaction = action;
                 max = score;
             }
         }
         return bestaction;
+
     }
 
-    public ArrayList miniMax(State state, int depth, boolean maximize,HashMap<Integer, Action> bestAction) {
-        if (depth == 0) {
-            ArrayList array = new ArrayList<>();
-            array.add(null);
-            array.add(game.getResult(state,bestAction));
-            return array;
-        }
+    public double miniMax(State state, int depth, boolean maximize) {
         if (maximize) {
-            ArrayList max = new ArrayList<>();
-            max.add(null);
-            max.add(-999999);
-
+            if(game.isTerminal(state)||depth==0){
+                return game.getUtility(state, false);
+            }
+            double score = Double.NEGATIVE_INFINITY;
             for (Action action : game.getActions(state)) {
                 State state2 = state;
-                int score = (int) miniMax(state2, depth - 1, false,bestAction).get(1);
-                if (score > (int) max.get(1)) {
-                    max.set(0, state);
-                    max.set(1, score);
-                }
+                state2 = game.getResult(state2,action);
+                score = Math.max(score, miniMax(state2, depth-1, false));
             }
-            return max;
+            return score;
         } else {
-            ArrayList min = new ArrayList<>();
-            min.add(null);
-            min.add(999999);
+            if(game.isTerminal(state)||depth==0){
+                return game.getUtility(state, true);
+            }
+            double score = Double.POSITIVE_INFINITY;
             for (Action action : game.getActions(state)) {
                 State state2 = state;
-                int score = (int) miniMax(state2, depth - 1, true,bestAction).get(1);
-                if (score < (int) min.get(1))
-                    min.set(0, action);
-                min.set(1, score);
+                state2 = game.getResult(state2,action);
+                score = Math.min(score, miniMax(state2, depth-1, true));
             }
-            return min;
+            return score;
         }
     }
 }
+
+
 /*
 package jeux;
 
