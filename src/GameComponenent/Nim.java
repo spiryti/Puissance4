@@ -3,23 +3,23 @@ package GameComponenent;
 import java.util.ArrayList;
 
 public class Nim implements Game<Integer,Integer>{
-    int depth=10;
+    int depth=11;
 
     @Override
     public Integer getInitialState() {
-        return 10;
+        return 11;
     }
 
     @Override
     public ArrayList<Integer> getActions(Integer state) {
         ArrayList<Integer> actions=new ArrayList<>();
-        if(state>=2){
+        if(state>1){
             actions.add(1);
         }
-        if(state>=3){
+        if(state>2){
             actions.add(2);
         }
-        if(state>=4){
+        if(state>3){
             actions.add(3);
         }
         return actions;
@@ -38,6 +38,7 @@ public class Nim implements Game<Integer,Integer>{
 
     @Override
     public boolean isTerminal(Integer state) {
+        //System.out.println("is terminal"+ state);
         return state==1;
     }
 

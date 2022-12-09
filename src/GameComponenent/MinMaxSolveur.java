@@ -8,7 +8,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
 
     public MinMaxSolveur(Game game) {
         this.game = game;
-        this.depth = 11;
+        this.depth = 10;
     }
 
     @Override
@@ -31,6 +31,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
     public double miniMax(State state, int depth, boolean maximize) {
         if (maximize) {
             if(game.isTerminal(state)||depth==0){
+                System.out.println("Terminal    "+game.getUtility(state,false));
                 return game.getUtility(state, false);
             }
             double score = Double.NEGATIVE_INFINITY;
@@ -42,6 +43,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
             return score;
         } else {
             if(game.isTerminal(state)||depth==0){
+                System.out.println("Terminal 2          "+game.getUtility(state,false));
                 return game.getUtility(state, true);
             }
             double score = Double.POSITIVE_INFINITY;
