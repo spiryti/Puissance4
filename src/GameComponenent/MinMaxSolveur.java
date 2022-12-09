@@ -19,7 +19,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
             State state2 = state;
             state2 = game.getResult(state2,action,false);
             double score = miniMax(state2,depth - 1, false);
-            if (score > max) {
+            if (score >= max) {
                 bestaction = action;
                 max = score;
             }

@@ -3,7 +3,7 @@ package GameComponenent;
 import java.util.ArrayList;
 
 public class Nim implements Game<Integer,Integer>{
-    int depth=11;
+    int depth=10;
 
     @Override
     public Integer getInitialState() {
@@ -13,13 +13,13 @@ public class Nim implements Game<Integer,Integer>{
     @Override
     public ArrayList<Integer> getActions(Integer state) {
         ArrayList<Integer> actions=new ArrayList<>();
-        if(state>2){
+        if(state>=2){
             actions.add(1);
         }
-        if(state>3){
+        if(state>=3){
             actions.add(2);
         }
-        if(state>4){
+        if(state>=4){
             actions.add(3);
         }
         return actions;
