@@ -1,14 +1,14 @@
 package GameComponenent;
 
 
-public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
+public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
 
     public Game<State,Action> game;
     private final int depth;
 
-    AlphaBetaSolveur(Game game) {
+    public AlphaBetaSolveur(Game game) {
         this.game = game;
-        this.depth = 3;
+        this.depth = 5;
     }
 
     @Override

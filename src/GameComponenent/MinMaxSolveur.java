@@ -1,14 +1,14 @@
 package GameComponenent;
 
 
-public abstract class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
+public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
 
     public Game<State,Action> game;
     private final int depth;
 
-    MinMaxSolveur(Game game) {
+    public MinMaxSolveur(Game game) {
         this.game = game;
-        this.depth = 3;
+        this.depth = 5;
     }
 
     @Override

@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-import GameComponenent.Jeton;
 import GameComponenent.Puissance4;
 import GameComponenent.Puissance4Action;
 import GameComponenent.Puissance4State;
@@ -15,21 +14,21 @@ public class Main {
         p4state.stateToString();
         p4.getActions(p4state);  
         System.out.println();
-        System.out.println("Entrez une collone pour poser une pièce");
+        System.out.println("Entrez une colonne pour poser une pièce");
         int colonne = scanner.nextInt();
         do {
         	Puissance4Action p4action = new Puissance4Action(colonne);
 	        p4.getResult(p4state, p4action, joueur);
 	        p4state.stateToString();
-	        if (joueur == true) { // si jeton jaune joué
+	        if (joueur) { // si jeton jaune joué
 	        	joueur = false; // next tour = bouton rouge 
 	        	p4state.setJoueur(joueur);
-	        }else if (joueur == false) { // si jeton rouge joué 
+	        }else if (!joueur) { // si jeton rouge joué
 	        	joueur = true;// next turn bouton jaune 
 	        	p4state.setJoueur(joueur);
 	        }
 	        System.out.println();
-	        System.out.println("Entrez une collone pour poser une pièce");
+	        System.out.println("Entrez une colonne pour poser une pièce");
 	        colonne = scanner.nextInt();
         }while(colonne != 10);
         

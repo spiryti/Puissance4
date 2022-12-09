@@ -3,11 +3,11 @@ package GameComponenent;
 import java.util.ArrayList;
 
 public class Nim implements Game<Integer,Integer>{
-    int depth=10;
+    int depth=11;
 
     @Override
     public Integer getInitialState() {
-        return 20;
+        return 10;
     }
 
     @Override
