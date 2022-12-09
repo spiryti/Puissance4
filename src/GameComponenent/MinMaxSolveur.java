@@ -31,7 +31,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
     public double miniMax(State state, int depth, boolean maximize) {
         if (maximize) {
             if(game.isTerminal(state)||depth==0){
-                System.out.println("Terminal    "+game.getUtility(state,false));
+                //System.out.println("Terminal    "+game.getUtility(state,false));
                 return game.getUtility(state, false);
             }
             double score = Double.NEGATIVE_INFINITY;
@@ -43,7 +43,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
             return score;
         } else {
             if(game.isTerminal(state)||depth==0){
-                System.out.println("Terminal 2          "+game.getUtility(state,false));
+                //System.out.println("Terminal 2          "+game.getUtility(state,true));
                 return game.getUtility(state, true);
             }
             double score = Double.POSITIVE_INFINITY;
@@ -60,26 +60,19 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
 
 /*
 package jeux;
-
-
 public class MinimaxSearch<STATE, ACTION> implements
         Search<STATE, ACTION> {
-
     private Game<STATE, ACTION> game;
     private int expandedNodes;
-
     /** Creates a new search object for a given game. */
     /*
     public static <STATE, ACTION> MinimaxSearch<STATE, ACTION>
     createFor(Game<STATE, ACTION> game) {
         return new MinimaxSearch<STATE, ACTION>(game);
     }
-
     public MinimaxSearch(Game<STATE, ACTION> game) {
         this.game = game;
     }
-
-
     public ACTION makeDecision(STATE state) {
         expandedNodes = 0;
         ACTION result = null ;
@@ -94,7 +87,6 @@ public class MinimaxSearch<STATE, ACTION> implements
         }
         return result;
     }
-
     public double maxValue(STATE state, boolean player) {
         // calcule une valeur d'utilité pour un noued max
         assert (player);
@@ -107,7 +99,6 @@ public class MinimaxSearch<STATE, ACTION> implements
                     minValue(game.getResult(state, action),!player));
         return value;
     }
-
     public double minValue(STATE state, boolean player) {
         // calcule une valeur d'utilité pour un noeud min
         assert (!(player));
@@ -120,7 +111,6 @@ public class MinimaxSearch<STATE, ACTION> implements
                     maxValue(game.getResult(state, action),!player));
         return value;
     }
-
     public int getMetrics() {
         return expandedNodes;
     }
