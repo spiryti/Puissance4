@@ -1,24 +1,25 @@
 package GameComponenent;
 
-public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Action>{
 
-    public Game game;
-    private int depth;
+public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
+
+    public Game<State,Action> game;
+    private final int depth;
 
     AlphaBetaSolveur(Game game) {
         this.game = game;
         this.depth = 3;
     }
+
     @Override
     public Action makeDecision(State state) {
         Action bestaction = null;
         double alpha = Double.NEGATIVE_INFINITY;
         double beta = Double.POSITIVE_INFINITY;
-        double score;
         for (Action action : game.getActions(state)) {
             State state2 = state;
             state2 = game.getResult(state2, action,false);
-            score = alphaBeta(state2, depth - 1, false, alpha, beta);
+            double score = alphaBeta(state2, depth - 1, false, alpha, beta);
             alpha = Math.max(alpha, score);
             if (score > alpha) {
                 bestaction = action;
@@ -65,3 +66,4 @@ public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Ac
         }
     }
 }
+
