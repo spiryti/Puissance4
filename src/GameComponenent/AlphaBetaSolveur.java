@@ -17,7 +17,7 @@ public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Ac
         double score;
         for (Action action : game.getActions(state)) {
             State state2 = state;
-            state2 = game.getResult(state2, action);
+            state2 = game.getResult(state2, action,false);
             score = alphaBeta(state2, depth - 1, false, alpha, beta);
             alpha = Math.max(alpha, score);
             if (score > alpha) {
@@ -39,7 +39,7 @@ public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Ac
             double score;
             for (Action action : game.getActions(state)) {
                 State state2 = state;
-                state2 = game.getResult(state2,action);
+                state2 = game.getResult(state2,action,false);
                 score = alphaBeta(state2, depth-1, false,alpha,beta);
                 alpha = Math.max(alpha,score);
                 if(beta <= alpha){
@@ -54,7 +54,7 @@ public abstract class AlphaBetaSolveur<State,Action> implements Solveur<State,Ac
             double score;
             for (Action action : game.getActions(state)) {
                 State state2 = state;
-                state2 = game.getResult(state2, action);
+                state2 = game.getResult(state2, action,true);
                 score = alphaBeta(state2, depth - 1, true,alpha,beta);
                 beta = Math.min(beta,score);
                 if(beta <= alpha){
