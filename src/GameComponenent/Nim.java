@@ -38,7 +38,7 @@ public class Nim implements Game<Integer,Integer>{
 
     @Override
     public boolean isTerminal(Integer state) {
-        return state<=0;
+        return state<=1;
     }
 
     @Override
