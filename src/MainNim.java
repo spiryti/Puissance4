@@ -22,13 +22,14 @@ public class MainNim {
                     System.out.println();
                     System.out.println(nimState);
                     if (!nim.isTerminal(nimState)) {
-                        MinMaxSolveur<Integer, Integer> test = new MinMaxSolveur(nim);
-                        nimAction = (Integer) test.makeDecision(nimState);
+                        //MinMaxSolveur<Integer, Integer> solveur = new MinMaxSolveur(nim);
+                        AlphaBetaSolveur<Integer, Integer> solveur = new AlphaBetaSolveur(nim);
+                        nimAction = (Integer) solveur.makeDecision(nimState);
                         nimState = nim.getResult(nimState, nimAction, joueur);
                         joueur = true;
                     }
+                    System.out.println(nimState);
                 }
-                System.out.println(nimState);
             }
         }
         if(!joueur && nimState>0){

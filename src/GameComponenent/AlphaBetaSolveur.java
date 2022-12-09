@@ -5,10 +5,12 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
 
     public Game<State,Action> game;
     private final int depth;
+    private int nombreActions;
 
     public AlphaBetaSolveur(Game game) {
         this.game = game;
-        this.depth = 5;
+        this.depth = 20;
+        this.nombreActions=0;
     }
 
     @Override
@@ -17,11 +19,11 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
         double alpha = Double.NEGATIVE_INFINITY;
         double beta = Double.POSITIVE_INFINITY;
         for (Action action : game.getActions(state)) {
+            nombreActions++;
             State state2 = state;
             state2 = game.getResult(state2, action,false);
             double score = alphaBeta(state2, depth - 1, false, alpha, beta);
-            alpha = Math.max(alpha, score);
-            if (score > alpha) {
+            if (score >= alpha) {
                 bestaction = action;
                 alpha = score;
                 if (beta <= alpha) {
@@ -33,6 +35,7 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
     }
 
     public double alphaBeta(State state, int depth, boolean maximize,double alpha, double beta){
+        nombreActions++;
         if (maximize) {
             if(game.isTerminal(state)||depth==0){
                 return game.getUtility(state, false);
