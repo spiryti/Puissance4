@@ -31,7 +31,7 @@ public class Nim implements Game<Integer,Integer>{
     }
 
     @Override
-    public Integer getResult(Integer state, Integer action) {
+    public Integer getResult(Integer state, Integer action,boolean joueur) {
         depth-=1;
         return state-action;
     }
