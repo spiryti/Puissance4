@@ -8,7 +8,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
 
     public MinMaxSolveur(Game game) {
         this.game = game;
-        this.depth = 5;
+        this.depth = 11;
     }
 
     @Override

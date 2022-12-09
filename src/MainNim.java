@@ -27,7 +27,7 @@ public class MainNim {
                 }
             }
         }
-        if(joueur){
+        if(!joueur){
             System.out.println("Le joueur a gagné");
         }else{
             System.out.println("L'ordi a gagné");
