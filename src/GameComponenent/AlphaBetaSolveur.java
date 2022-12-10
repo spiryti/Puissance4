@@ -36,36 +36,33 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
 
     public double alphaBeta(State state, int depth, boolean maximize,double alpha, double beta){
         nombreActions++;
+        if(game.isTerminal(state)||depth==0){
+            return game.getUtility(state, false);
+        }
         if (maximize) {
-            if(game.isTerminal(state)||depth==0){
-                return game.getUtility(state, false);
-            }
-            double score;
+            double score = Double.NEGATIVE_INFINITY;
             for (Action action : game.getActions(state)) {
                 State state2 = state;
                 state2 = game.getResult(state2,action,false);
-                score = alphaBeta(state2, depth-1, false,alpha,beta);
-                alpha = Math.max(alpha,score);
-                if(beta <= alpha){
-                    return alpha;
+                score = Math.max(score,alphaBeta(state2, depth-1, false,alpha,beta));
+                if(score >= beta){
+                    return score;
                 }
+                alpha = Math.max(score,alpha);
             }
-            return alpha;
+            return score;
         } else {
-            if (game.isTerminal(state) || depth == 0) {
-                return game.getUtility(state, true);
-            }
-            double score;
+            double score = Double.POSITIVE_INFINITY;
             for (Action action : game.getActions(state)) {
                 State state2 = state;
                 state2 = game.getResult(state2, action,true);
-                score = alphaBeta(state2, depth - 1, true,alpha,beta);
-                beta = Math.min(beta,score);
-                if(beta <= alpha){
-                    return beta;
+                score = Math.min(score,alphaBeta(state2, depth - 1, true,alpha,beta));
+                if(score <= alpha){
+                    return score;
                 }
+                beta = Math.min(score,beta);
             }
-            return beta;
+            return score;
         }
     }
 }
