@@ -18,17 +18,15 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
         Action bestaction = null;
         double alpha = Double.NEGATIVE_INFINITY;
         double beta = Double.POSITIVE_INFINITY;
+        double max = Double.NEGATIVE_INFINITY;
         for (Action action : game.getActions(state)) {
             nombreActions++;
             State state2 = state;
             state2 = game.getResult(state2, action,false);
             double score = alphaBeta(state2, depth - 1, false, alpha, beta);
-            if (score >= alpha) {
+            if (score >= max) {
                 bestaction = action;
-                alpha = score;
-                if (beta <= alpha) {
-                    return action;
-                }
+                max = score;
             }
         }
         return bestaction;
