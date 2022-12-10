@@ -9,7 +9,7 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
 
     public AlphaBetaSolveur(Game game) {
         this.game = game;
-        this.depth = 20;
+        this.depth = 25;
         this.nombreActions=0;
     }
 
@@ -18,15 +18,17 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
         Action bestaction = null;
         double alpha = Double.NEGATIVE_INFINITY;
         double beta = Double.POSITIVE_INFINITY;
-        double max = Double.NEGATIVE_INFINITY;
+        double score = Double.NEGATIVE_INFINITY;
         for (Action action : game.getActions(state)) {
-            nombreActions++;
             State state2 = state;
-            state2 = game.getResult(state2, action,false);
-            double score = alphaBeta(state2, depth - 1, false, alpha, beta);
-            if (score >= max) {
+            state2 = game.getResult(state2,action,false);
+            score = Math.max(score,alphaBeta(state2, depth-1, false,alpha,beta));
+            if(score >= beta){
+                return action;
+            }
+            if(score >= alpha){
                 bestaction = action;
-                max = score;
+                alpha = score;
             }
         }
         return bestaction;
@@ -34,10 +36,10 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
 
     public double alphaBeta(State state, int depth, boolean maximize,double alpha, double beta){
         nombreActions++;
-        if(game.isTerminal(state)||depth==0){
-            return game.getUtility(state, false);
-        }
         if (maximize) {
+            if(game.isTerminal(state)||depth==0){
+                return game.getUtility(state, false);
+            }
             double score = Double.NEGATIVE_INFINITY;
             for (Action action : game.getActions(state)) {
                 State state2 = state;
@@ -50,6 +52,9 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
             }
             return score;
         } else {
+            if(game.isTerminal(state)||depth==0){
+                return game.getUtility(state, true);
+            }
             double score = Double.POSITIVE_INFINITY;
             for (Action action : game.getActions(state)) {
                 State state2 = state;

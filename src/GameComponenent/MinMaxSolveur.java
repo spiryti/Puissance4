@@ -9,7 +9,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
 
     public MinMaxSolveur(Game game) {
         this.game = game;
-        this.depth = 10;
+        this.depth = 25;
         this.nombreActions=0;
     }
 
