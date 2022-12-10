@@ -10,6 +10,9 @@ public class MainNim {
         nim.getActions(nimState);
         boolean joueur=true;
         System.out.println(nimState);
+        //MinMaxSolveur<Integer, Integer> solveur = new MinMaxSolveur(nim);
+        AlphaBetaSolveur<Integer, Integer> solveur = new AlphaBetaSolveur(nim);
+
         while(!nim.isTerminal(nimState)) {
 
             System.out.println("Entrez le nombre de baton à enlever (entre 1 et 3)");
@@ -22,8 +25,6 @@ public class MainNim {
                     System.out.println();
                     System.out.println(nimState);
                     if (!nim.isTerminal(nimState)) {
-                        //MinMaxSolveur<Integer, Integer> solveur = new MinMaxSolveur(nim);
-                        AlphaBetaSolveur<Integer, Integer> solveur = new AlphaBetaSolveur(nim);
                         nimAction = solveur.makeDecision(nimState);
                         nimState = nim.getResult(nimState, nimAction, joueur);
                         joueur = true;

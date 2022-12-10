@@ -41,7 +41,7 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
     	
     	Jeton[][] plateau = state.getPlateau();
     	ArrayList<Jeton> places = new ArrayList<Jeton>();
-    	int colonne = action.getColonne() -1;
+    	int colonne = action.getColonne();
     	
     	for (int i = 0; i<6;i++) {
     		Jeton jeton = plateau[i][colonne];

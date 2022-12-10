@@ -10,9 +10,9 @@ public class Puissance4State {
     
     public Puissance4State(){
     	joueur = true; // Jeton jaune = true et jeton Rouge = false
-        plateau=new Jeton[6][7];
-        for (int i=0 ; i<plateau.length;i++) {
-    		for (int j=0;j<plateau[i].length;j++) {
+        plateau = new Jeton[6][7];
+        for (int i = 0 ; i<plateau.length;i++) {
+    		for (int j = 0; j < plateau[i].length; j++) {
     			this.plateau[i][j] = Jeton.Vide;
     		}
     	}
@@ -44,13 +44,17 @@ public class Puissance4State {
 	public void stateToString() {
 		for (int i=plateau.length -1 ; i> -1;i--) {
     		for (int j=0;j<7;j++) {
-    			System.out.print("|"+plateau[i][j]+"|");
+				if(plateau[i][j]==Jeton.Vide){
+					System.out.print("|" + plateau[i][j] + " |");
+				}else {
+					System.out.print("|" + plateau[i][j] + "|");
+				}
     		}
     		System.out.println();
 		}
-		for (int i = 0; i <6; i++) {
+		for (int i = 0; i < 7; i++) {
 			int colonne = i+1;
-			System.out.print("|"+ colonne +"|     ");
+			System.out.print("|"+ colonne +"|    ");
 		}
 		
 	}
