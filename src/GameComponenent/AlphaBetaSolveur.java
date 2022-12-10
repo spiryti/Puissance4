@@ -23,9 +23,6 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
             State state2 = state;
             state2 = game.getResult(state2,action,false);
             score = Math.max(score,alphaBeta(state2, depth-1, false,alpha,beta));
-            if(score >= beta){
-                return action;
-            }
             if(score >= alpha){
                 bestaction = action;
                 alpha = score;
@@ -45,10 +42,10 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
                 State state2 = state;
                 state2 = game.getResult(state2,action,false);
                 score = Math.max(score,alphaBeta(state2, depth-1, false,alpha,beta));
-                if(score >= beta){
+                alpha = Math.max(score,alpha);
+                if(alpha >= beta){
                     return score;
                 }
-                alpha = Math.max(score,alpha);
             }
             return score;
         } else {
@@ -60,10 +57,10 @@ public class AlphaBetaSolveur<State,Action> implements Solveur<State,Action> {
                 State state2 = state;
                 state2 = game.getResult(state2, action,true);
                 score = Math.min(score,alphaBeta(state2, depth - 1, true,alpha,beta));
-                if(score <= alpha){
+                beta = Math.min(score,beta);
+                if(beta <= alpha){
                     return score;
                 }
-                beta = Math.min(score,beta);
             }
             return score;
         }
