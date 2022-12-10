@@ -17,7 +17,6 @@ public class Main {
 			if(joueur) {
 				System.out.println();
 				System.out.println("Entrez une colonne pour poser une pièce");
-				System.out.println();
 				int colonne = scanner.nextInt();
 				for (Puissance4Action action : p4.getActions(p4state)) {
 					if (colonne == action.getColonne()) {
