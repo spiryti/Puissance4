@@ -14,7 +14,7 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
     }
 
     @Override
-    public Action makeDecision(State state) {
+    public Action makeDecision(State state) {   //MODIFIER LE TRY CATCH (c'etait juste pour tester)
         Action bestaction = null;
         double max = Double.NEGATIVE_INFINITY;
         for (Action action : game.getActions(state)) {
