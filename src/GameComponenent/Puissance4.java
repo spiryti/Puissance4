@@ -51,9 +51,9 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
     	for(int i=0; i<places.size();i++) {
     		Jeton jeton = places.get(i);
     		if ( !jeton.equals(Jeton.Vide) && i == places.size()-1) {
-    			if(joueur) {
+    			/*if(joueur) {
 					System.out.println("plus de place sur cette colonne");
-				}
+				}*/
     		}else if (jeton.equals(Jeton.Vide)){
     			if (joueur) {
     				jeton = Jeton.Jaune; 

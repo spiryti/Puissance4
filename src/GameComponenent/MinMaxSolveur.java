@@ -19,7 +19,12 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
         double max = Double.NEGATIVE_INFINITY;
         for (Action action : game.getActions(state)) {
             nombreActions++;
-            State state2 = state;
+            State state2;
+            try{
+                state2 = (State) new Puissance4State((Puissance4State) state);
+            }catch(Exception e){
+                state2 = state;
+            }
             state2 = game.getResult(state2,action,false);
             double score = miniMax(state2,depth - 1, false);
             if (score >= max) {

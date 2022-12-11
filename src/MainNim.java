@@ -10,8 +10,8 @@ public class MainNim {
         nim.getActions(nimState);
         boolean joueur=true;
         System.out.println(nimState);
-        //MinMaxSolveur<Integer, Integer> solveur = new MinMaxSolveur(nim);
-        AlphaBetaSolveur<Integer, Integer> solveur = new AlphaBetaSolveur(nim);
+        MinMaxSolveur<Integer, Integer> solveur = new MinMaxSolveur(nim);
+        //AlphaBetaSolveur<Integer, Integer> solveur = new AlphaBetaSolveur(nim);
 
         while(!nim.isTerminal(nimState)) {
             if(joueur) {

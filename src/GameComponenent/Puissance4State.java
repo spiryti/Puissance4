@@ -18,10 +18,21 @@ public class Puissance4State {
         }
     }
 
-    public Puissance4State(Puissance4State copie) {
+    /*public Puissance4State(Puissance4State copie) {
+        this.joueur = copie.joueur; // Jeton jaune = true et jeton Rouge = false
+        this.plateau = new Jeton[6][7];
+        for (int i = 0; i < copie.plateau.length; i++) {
+            System.arraycopy(copie.plateau[i], 0, this.plateau[i], 0, copie.plateau[i].length);
+        }
+    }*/
 
+    public <State> Puissance4State(Puissance4State copie) {
+        this.joueur = copie.joueur; // Jeton jaune = true et jeton Rouge = false
+        this.plateau = new Jeton[6][7];
+        for (int i = 0; i < copie.plateau.length; i++) {
+            System.arraycopy(copie.plateau[i], 0, this.plateau[i], 0, copie.plateau[i].length);
+        }
     }
-
 
     public boolean isJoueur() {
         return joueur;
@@ -57,6 +68,4 @@ public class Puissance4State {
         }
 
     }
-
-
 }
