@@ -7,6 +7,8 @@ public class Puissance4State {
 
     private Jeton plateau[][];
     private boolean joueur;
+
+	public int Player1Utility=0;
     
     public Puissance4State(){
     	joueur = true; // Jeton jaune = true et jeton Rouge = false
@@ -19,6 +21,13 @@ public class Puissance4State {
     }
     
     public Puissance4State(Puissance4State copie){
+		joueur=copie.isJoueur();
+		Player1Utility=copie.Player1Utility;
+		for (int i=0 ; i<plateau.length;i++) {
+			for (int j=0;j<plateau[i].length;j++) {
+				this.plateau[i][j] = copie.plateau[i][j];
+			}
+		}
 
     }
     

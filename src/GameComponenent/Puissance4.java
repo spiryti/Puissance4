@@ -36,9 +36,9 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
     }
 
     @Override
-    public Puissance4State getResult(Puissance4State state, Puissance4Action action, boolean joueur) {
+    public Puissance4State getResult(Puissance4State initialState, Puissance4Action action, boolean joueur) {
         //@todo renvoie l'état (le plateau) après que une action ait été effectué
-    	
+    	Puissance4State state=new Puissance4State(initialState);
     	Jeton[][] plateau = state.getPlateau();
     	ArrayList<Jeton> places = new ArrayList<Jeton>();
     	int colonne = action.getColonne() -1;
@@ -69,14 +69,23 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 
     @Override
     public boolean isTerminal(Puissance4State state) {
-        //@todo determine si cet état correspond à la fin du jeu(égalité,victoire jeune, victoire rouge)
+        if(
+				checkDiagDownRightUpLeft(state) || checkDiagUpLeftToDownRight(state) ||
+				checkHorizontal(state) || checkVertical(state) || isFull(state)){
+			return true;
+		}
         return false;
     }
 
     @Override
     public int getUtility(Puissance4State state,boolean player) {
         //@todo Gabriel s'en occupe
-        return 0;
+		if(player){
+			return state.Player1Utility;
+		}
+		else {
+			return -state.Player1Utility;
+		}
     }
 
 	private boolean isFull(Puissance4State state){
@@ -86,13 +95,20 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 				return false;
 			}
 		}
-		//state.lastUtilityCalculated=0;
+		state.Player1Utility=0;
 		return true;
 	}
-
-	private boolean checkVertical(Puissance4State state,boolean player){
+	public void setUtilityForTerminal(Puissance4State state,Jeton firstFind){
+		if(firstFind==Jeton.Jaune){
+			state.Player1Utility =Integer.MAX_VALUE;
+		}
+		else{
+			state.Player1Utility =Integer.MIN_VALUE;
+		}
+	}
+	private boolean checkVertical(Puissance4State state){
 		Jeton plateau[][]=state.getPlateau();
-		for(int j=0;j<6;j++){
+		for(int j=0;j<7;j++){
 			Jeton firstFind=Jeton.Vide;
 			int numberFind=0;
 			for(int i=5;i>=0;i--){
@@ -112,30 +128,22 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 				}
 			}
 			if(numberFind>=4){
-				if((firstFind==Jeton.Jaune)==player){
-					//state.lastUtilityCalculated =Integer.MAX_VALUE;
-				}
-				else{
-					//state.lastUtilityCalculated=Integer.MIN_VALUE;
-				}
+				setUtilityForTerminal(state,firstFind);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private boolean checkHorizontal(Puissance4State state,boolean player){
+	private boolean checkHorizontal(Puissance4State state){
 		Jeton plateau[][]=state.getPlateau();
-		for(int i=0;i<7;i++){
+		for(int i=0;i<6;i++){
 			Jeton firstFind=Jeton.Vide;
 			int numberFind=0;
-			for(int j=0;j<6;j++){
+			for(int j=0;j<7;j++){
 				if(firstFind!=Jeton.Vide){
 					if(firstFind!=plateau[i][j]) {
 						numberFind=0;
-					}
-					else {
-						numberFind+=1;
 					}
 				}
 
@@ -146,50 +154,101 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 				}
 			}
 			if(numberFind>=4){
-				if((firstFind==Jeton.Jaune)==player){
-					//state.lastUtilityCalculated =Integer.MAX_VALUE;
-				}
-				else{
-					//state.lastUtilityCalculated=Integer.MIN_VALUE;
-				}
+				setUtilityForTerminal(state,firstFind);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private boolean checkDiagUp(Puissance4State state,boolean player){
+	private boolean checkDiagUpLeftToDownRight(Puissance4State state){
 		Jeton plateau[][]=state.getPlateau();
-		for(int i=0;i<7;i++){
+		for(int i=0;i<5;i++){
 			Jeton firstFind=Jeton.Vide;
 			int numberFind=0;
-			for(int j=0;j<6;j++){
+			for(int j=0;j<=i;j++){
 				if(firstFind!=Jeton.Vide){
-					if(firstFind!=plateau[i][j]) {
+					if(firstFind!=plateau[5-i+j][j]) {
 						numberFind=0;
 					}
-					else {
-						numberFind+=1;
-					}
 				}
-
 				if (plateau[i][j] != Jeton.Vide) {
-					firstFind = plateau[i][j];
+					firstFind = plateau[5-i+j][j];
 					numberFind += 1;
 
 				}
 			}
 			if(numberFind>=4){
-				if((firstFind==Jeton.Jaune)==player){
-					//state.lastUtilityCalculated =Integer.MAX_VALUE;
+				setUtilityForTerminal(state,firstFind);
+				return true;
+			}
+		}
+		for(int j=0;j<7;j++){
+			Jeton firstFind=Jeton.Vide;
+			int numberFind=0;
+			for(int i=0;i<=j && i<6;i++){
+				if(firstFind!=Jeton.Vide){
+					if(firstFind!=plateau[i][6-j+i]) {
+						numberFind=0;
+					}
 				}
-				else{
-					//state.lastUtilityCalculated=Integer.MIN_VALUE;
+
+				if (plateau[i][j] != Jeton.Vide) {
+					firstFind = plateau[i][6-j+i];
+					numberFind += 1;
+
 				}
+			}
+			if(numberFind>=4){
+				setUtilityForTerminal(state,firstFind);
 				return true;
 			}
 		}
 		return false;
 	}
+	private boolean checkDiagDownRightUpLeft(Puissance4State state){
+		Jeton plateau[][]=state.getPlateau();
+		for(int i=0;i<5;i++){
+			Jeton firstFind=Jeton.Vide;
+			int numberFind=0;
+			for(int j=0;j<=i;j++){
+				if(firstFind!=Jeton.Vide){
+					if(firstFind!=plateau[5-i+j][6-j]) {
+						numberFind=0;
+					}
+				}
+				if (plateau[i][j] != Jeton.Vide) {
+					firstFind = plateau[5-i+j][6-j];
+					numberFind += 1;
+				}
+			}
+			if(numberFind>=4){
+				setUtilityForTerminal(state,firstFind);
+				return true;
+			}
+		}
+		for(int j=0;j<7;j++){
+			Jeton firstFind=Jeton.Vide;
+			int numberFind=0;
+			for(int i=0;i<=j && i<6;i++){
+				if(firstFind!=Jeton.Vide){
+					if(firstFind!=plateau[i][j-i]) {
+						numberFind=0;
+					}
+				}
+				if (plateau[i][j] != Jeton.Vide) {
+					firstFind = plateau[i][j-i];
+					numberFind += 1;
+				}
+			}
+			if(numberFind>=4){
+				setUtilityForTerminal(state,firstFind);
+				return true;
+			}
+		}
+		return false;
+	}
+
+
 
 }
