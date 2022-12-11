@@ -41,7 +41,7 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
     	Puissance4State state=new Puissance4State(initialState);
     	Jeton[][] plateau = state.getPlateau();
     	ArrayList<Jeton> places = new ArrayList<Jeton>();
-    	int colonne = action.getColonne() -1;
+    	int colonne = action.getColonne();
     	
     	for (int i = 0; i<6;i++) {
     		Jeton jeton = plateau[i][colonne];
@@ -50,10 +50,12 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
     	
     	for(int i=0; i<places.size();i++) {
     		Jeton jeton = places.get(i);
-    		if ( jeton.equals(Jeton.Vide) == false && i == places.size()-1) {
-    			System.out.println("plus de place sur cette colonne");	
+    		if ( !jeton.equals(Jeton.Vide) && i == places.size()-1) {
+    			/*if(joueur) {
+					System.out.println("plus de place sur cette colonne");
+				}*/
     		}else if (jeton.equals(Jeton.Vide)){
-    			if (joueur == true) {
+    			if (joueur) {
     				jeton = Jeton.Jaune; 
     			}else {
     				jeton = Jeton.Rouge; 

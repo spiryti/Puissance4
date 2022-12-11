@@ -10,26 +10,31 @@ public class MainNim {
         nim.getActions(nimState);
         boolean joueur=true;
         System.out.println(nimState);
-        while(!nim.isTerminal(nimState)) {
+        MinMaxSolveur<Integer, Integer> solveur = new MinMaxSolveur(nim);
+        //AlphaBetaSolveur<Integer, Integer> solveur = new AlphaBetaSolveur(nim);
 
-            System.out.println("Entrez le nombre de baton à enlever (entre 1 et 3)");
-            int colonne = scanner.nextInt();
-            joueur = true;
-            if(colonne>0 && colonne<=3) {
-                Integer nimAction = colonne;
-                nimState=nim.getResult(nimState, nimAction, joueur);
+        while(!nim.isTerminal(nimState)) {
+            if(joueur) {
                 System.out.println();
-                System.out.println(nimState);
-                joueur = false;
-                if(!nim.isTerminal(nimState)){
-                    MinMaxSolveur<Integer,Integer> test = new MinMaxSolveur(nim);
-                    nimAction = (Integer) test.makeDecision(nimState);
-                    nimState = nim.getResult(nimState, nimAction, joueur);
+                System.out.println("Entrez le nombre de batons à enlever (entre 1 et 3)");
+                int colonne = scanner.nextInt();
+                for (Integer action : nim.getActions(nimState)) {
+                    if (colonne == action) {
+                        Integer nimAction = colonne;
+                        nimState = nim.getResult(nimState, nimAction, joueur);
+                        joueur = false;
+                        System.out.println();
+                        System.out.println(nimState);
+                    }
                 }
+            }else {
+                Integer nimAction = solveur.makeDecision(nimState);
+                nimState = nim.getResult(nimState, nimAction, joueur);
+                joueur = true;
             }
-            System.out.println(nimState);
+                    System.out.println(nimState);
         }
-        if(!joueur){
+        if(!joueur && nimState>0){
             System.out.println("Le joueur a gagné");
         }else{
             System.out.println("L'ordi a gagné");
