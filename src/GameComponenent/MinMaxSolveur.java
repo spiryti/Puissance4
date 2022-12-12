@@ -9,22 +9,18 @@ public class MinMaxSolveur<State,Action> implements Solveur<State,Action> {
 
     public MinMaxSolveur(Game game) {
         this.game = game;
-        this.depth = 25;
+        this.depth = 4;
         this.nombreActions=0;
     }
 
     @Override
-    public Action makeDecision(State state) {   //MODIFIER LE TRY CATCH (c'etait juste pour tester)
+    public Action makeDecision(State state) {
         Action bestaction = null;
         double max = Double.NEGATIVE_INFINITY;
         for (Action action : game.getActions(state)) {
             nombreActions++;
             State state2;
-            try{
-                state2 = (State) new Puissance4State((Puissance4State) state);
-            }catch(Exception e){
-                state2 = state;
-            }
+            state2 = state;
             state2 = game.getResult(state2,action,false);
             double score = miniMax(state2,depth - 1, false);
             if (score >= max) {

@@ -93,7 +93,7 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 	private boolean isFull(Puissance4State state){
 
 		for(int i=0; i < 7;i++){
-			if(state.getPlateau()[i][5]==Jeton.Vide){
+			if(state.getPlateau()[5][i]==Jeton.Vide){
 				return false;
 			}
 		}
@@ -128,11 +128,12 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 						numberFind += 1;
 					}
 				}
+				if(numberFind>=4){
+					setUtilityForTerminal(state,firstFind);
+					return true;
+				}
 			}
-			if(numberFind>=4){
-				setUtilityForTerminal(state,firstFind);
-				return true;
-			}
+
 		}
 		return false;
 	}
@@ -154,10 +155,10 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 					numberFind += 1;
 
 				}
-			}
-			if(numberFind>=4){
-				setUtilityForTerminal(state,firstFind);
-				return true;
+				if(numberFind>=4){
+					setUtilityForTerminal(state,firstFind);
+					return true;
+				}
 			}
 		}
 		return false;
@@ -179,10 +180,10 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 					numberFind += 1;
 
 				}
-			}
-			if(numberFind>=4){
-				setUtilityForTerminal(state,firstFind);
-				return true;
+				if(numberFind>=4){
+					setUtilityForTerminal(state,firstFind);
+					return true;
+				}
 			}
 		}
 		for(int j=0;j<7;j++){
@@ -200,11 +201,12 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 					numberFind += 1;
 
 				}
+				if(numberFind>=4){
+					setUtilityForTerminal(state,firstFind);
+					return true;
+				}
 			}
-			if(numberFind>=4){
-				setUtilityForTerminal(state,firstFind);
-				return true;
-			}
+
 		}
 		return false;
 	}
@@ -223,11 +225,12 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 					firstFind = plateau[5-i+j][6-j];
 					numberFind += 1;
 				}
+				if(numberFind>=4){
+					setUtilityForTerminal(state,firstFind);
+					return true;
+				}
 			}
-			if(numberFind>=4){
-				setUtilityForTerminal(state,firstFind);
-				return true;
-			}
+
 		}
 		for(int j=0;j<7;j++){
 			Jeton firstFind=Jeton.Vide;
@@ -242,10 +245,10 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 					firstFind = plateau[i][j-i];
 					numberFind += 1;
 				}
-			}
-			if(numberFind>=4){
-				setUtilityForTerminal(state,firstFind);
-				return true;
+				if(numberFind>=4){
+					setUtilityForTerminal(state,firstFind);
+					return true;
+				}
 			}
 		}
 		return false;

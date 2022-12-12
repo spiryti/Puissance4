@@ -22,7 +22,7 @@ public class Main {
 				for (Puissance4Action action : p4.getActions(p4state)) {
 					if (colonne == action.getColonne()) {
 						Puissance4Action p4action = new Puissance4Action(colonne);
-						p4.getResult(p4state, p4action, joueur);
+						p4state = p4.getResult(p4state, p4action, joueur);
 						p4state.stateToString();
 						System.out.println();
 						joueur = false;

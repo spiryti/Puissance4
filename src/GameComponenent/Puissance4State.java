@@ -23,6 +23,7 @@ public class Puissance4State {
     public Puissance4State(Puissance4State copie) {
         joueur = copie.isJoueur();
         Player1Utility = copie.Player1Utility;
+        plateau = new Jeton[6][7];
         for (int i = 0; i < plateau.length; i++) {
             for (int j = 0; j < plateau[i].length; j++) {
                 this.plateau[i][j] = copie.plateau[i][j];
