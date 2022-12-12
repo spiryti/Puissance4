@@ -1,5 +1,6 @@
 package GameComponenent;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
@@ -81,7 +82,6 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 
     @Override
     public int getUtility(Puissance4State state,boolean player) {
-        //@todo Gabriel s'en occupe
 		if(player){
 			return state.Player1Utility;
 		}
