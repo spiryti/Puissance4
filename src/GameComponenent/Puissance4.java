@@ -1,9 +1,8 @@
 package GameComponenent;
 
-import java.io.Console;
 import java.util.ArrayList;
 
-public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
+public class Puissance4 implements Game<Puissance4State, Puissance4Action>{
 
 
 	@Override
@@ -129,6 +128,7 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 					}
 				}
 				if(numberFind>=4){
+					System.out.println("lol");
 					setUtilityForTerminal(state,firstFind);
 					return true;
 				}
@@ -157,6 +157,7 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 				}
 				if(numberFind>=4){
 					setUtilityForTerminal(state,firstFind);
+					System.out.println("lol2");
 					return true;
 				}
 			}
@@ -175,13 +176,14 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 						numberFind=0;
 					}
 				}
-				if (plateau[i][j] != Jeton.Vide) {
+				if (plateau[5-i+j][j] != Jeton.Vide) {
 					firstFind = plateau[5-i+j][j];
 					numberFind += 1;
 
 				}
 				if(numberFind>=4){
 					setUtilityForTerminal(state,firstFind);
+					System.out.println("loldiag1");
 					return true;
 				}
 			}
@@ -196,13 +198,14 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 					}
 				}
 
-				if (plateau[i][j] != Jeton.Vide) {
+				if (plateau[i][6-j+i] != Jeton.Vide) {
 					firstFind = plateau[i][6-j+i];
 					numberFind += 1;
 
 				}
 				if(numberFind>=4){
 					setUtilityForTerminal(state,firstFind);
+					System.out.println("loldiag1");
 					return true;
 				}
 			}
@@ -221,12 +224,13 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 						numberFind=0;
 					}
 				}
-				if (plateau[i][j] != Jeton.Vide) {
+				if (plateau[5-i+j][j] != Jeton.Vide) {
 					firstFind = plateau[5-i+j][6-j];
 					numberFind += 1;
 				}
 				if(numberFind>=4){
 					setUtilityForTerminal(state,firstFind);
+					System.out.println("loldiag2");
 					return true;
 				}
 			}
@@ -241,12 +245,13 @@ public class Puissance4 implements Game<Puissance4State,Puissance4Action>{
 						numberFind=0;
 					}
 				}
-				if (plateau[i][j] != Jeton.Vide) {
+				if (plateau[i][j-i] != Jeton.Vide) {
 					firstFind = plateau[i][j-i];
 					numberFind += 1;
 				}
 				if(numberFind>=4){
 					setUtilityForTerminal(state,firstFind);
+					System.out.println("loldiag2");
 					return true;
 				}
 			}
