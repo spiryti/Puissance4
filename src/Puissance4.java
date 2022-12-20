@@ -19,6 +19,8 @@ public class Puissance4 implements Game<State, Integer> {
     State initial_state;
     boolean firstCall;
 
+    int winner=0;
+
 
 
     Puissance4(int player, int d){
@@ -47,6 +49,7 @@ public class Puissance4 implements Game<State, Integer> {
         for (Integer[] i : state.tableau){
             for (Integer j : i){
                 if (j == -1) {
+                    winner=-1;
                     return false;
                 }
             }
@@ -55,7 +58,11 @@ public class Puissance4 implements Game<State, Integer> {
     }
 
     private boolean row(Integer a, Integer b, Integer c, Integer d){
-        return (a.equals(b) && b.equals(c) && c.equals(d) && a > -1);
+        boolean row=(a.equals(b) && b.equals(c) && c.equals(d) && a > -1);
+        if(row){
+            winner=a;
+        }
+        return row;
     }
 
     private int alignement(Integer[][] state){
@@ -176,6 +183,15 @@ public class Puissance4 implements Game<State, Integer> {
         int m = state.tableau[0].length;
         int maxTotal = 0;
 
+        if(isTerminal(state)){
+            if(playerint==winner){
+                return 1000;
+            }
+            else{
+                return -10;
+            }
+
+        }
         //Parcours suivant une ligne
         for (int i = 0; i < n; i++){
             int maxLigne = parcours(state.tableau, i, 0, 0, 1, playerint);
